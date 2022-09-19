@@ -46,11 +46,13 @@ namespace PetShop.Service.Services
 
         public async Task<bool> DeleteAsync(Expression<Func<Customer, bool>> expression)
         {
-            var category = await unitOfWork.Customers.GetAsync(expression);
-            if (category is null)
+            var customer = await unitOfWork.Customers.GetAsync(expression);
+
+            if (customer is null)
                 throw new Exception("Object not found");
 
             await unitOfWork.Customers.DeleteAsync(expression);
+            await unitOfWork.SaveChangesAsync();
 
             return true;
         }
@@ -79,11 +81,9 @@ namespace PetShop.Service.Services
                 throw new Exception("This object is not found!");
 
             exist = mapper.Map(customerForCreation, exist);
-
             exist.Id = id;
 
             var result = unitOfWork.Customers.UpdateAsync(exist);
-
             await unitOfWork.SaveChangesAsync();
 
             return result;

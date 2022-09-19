@@ -49,6 +49,7 @@ namespace PetShop.Service.Services
                 throw new Exception("Object not found");
 
             await unitOfWork.Orders.DeleteAsync(expression);
+            await unitOfWork.SaveChangesAsync();
 
             return true;
         }

@@ -22,38 +22,57 @@ namespace PetShop.Test
             {
                 p.AddProfile<MappingProfile>();
             }).CreateMapper();
-            #region
-            CustomerForCreationDto dto = new CustomerForCreationDto()
-            {
-                Name = "Pozxvy",
-                Address = "asd",
-                Phone = "122sdfzs4",
-                Gender = Domain.Enums.Gender.Male,
-            };
-            Customer dto1 = new Customer()
-            {
-                Name = "Johzxvn",
-                Address = "azxvcsd",
-                Phone = "12234546574",
-                Gender = Domain.Enums.Gender.Female,
-            };
+
+            #region  create
+            //CustomerForCreationDto dto = new CustomerForCreationDto()
+            //{
+            //    Name = "Pozxvy",
+            //    Address = "asd",
+            //    Phone = "122sdfzs4",
+            //    Gender = Domain.Enums.Gender.Male,
+            //};
+            //Customer dto1 = new Customer()
+            //{
+            //    Name = "Johzxvn",
+            //    Address = "azxvcsd",
+            //    Phone = "12234546574",
+            //    Gender = Domain.Enums.Gender.Female,
+            //};
 
             ICustomerService customerService = new CustomerService();
-            ICustomerRepository customerRepository = new CustomerRepository(dbContext);
+            //ICustomerRepository customerRepository = new CustomerRepository(dbContext);
 
             //await customerRepository.CreateAsync(dto1);
 
-            await customerService.CreateAsync(dto);
+            //await customerService.CreateAsync(dto);
             // var r = customerService.GetAsync(p => p.Phone == dto.Phone);
 
-            await customerService.GetAllAsync();
+            //await customerService.GetAllAsync();
             //Console.WriteLine(r);
             #endregion
 
-            CategoryForCreationDto dto2 = new CategoryForCreationDto()
-            {
+            #region update
+            //await customerService.UpdateAsync(2, new CustomerForCreationDto()
+            //{
+            //    Name = "NewName",
+            //    Gender = Domain.Enums.Gender.Male,
+            //    Address = "NewAddress",
+            //    Phone = "+998121231212"
+            //});
+            #endregion
 
-            };
+            #region get all
+            //var customers = await customerService.GetAllAsync(p => p.Id > 1);
+
+            //foreach (var customer in customers)
+            //{
+            //    Console.WriteLine($"{customer.Name} {customer.Id}");
+            //}
+            #endregion
+
+            var cus = await customerService.GetAsync(p => p.Id == 2);
+            Console.WriteLine(cus.Name);
+            //await customerService.DeleteAsync(p => p.Id == 1);
         }
 
 
