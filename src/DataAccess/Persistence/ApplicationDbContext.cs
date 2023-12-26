@@ -1,4 +1,5 @@
 ﻿using Domain.Common;
+using Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Shared.Services;
@@ -14,6 +15,17 @@ public class ApplicationDbContext : IdentityDbContext
     {
         _claimService = claimService;
     }
+
+    public DbSet<Pet> Pets { get; set; }
+
+    public DbSet<PetType> PetTypes { get; set; }
+
+    public DbSet<Specialty> SpecialtyTypes { get; set; }
+
+    public DbSet<Vet> Vets { get; set; }
+
+    public DbSet<Visit> Visits { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
